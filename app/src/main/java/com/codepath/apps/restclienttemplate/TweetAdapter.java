@@ -9,11 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     private List<Tweet> mTweets;
+    Context context;
 
     // pass in the Tweets array in the constructor
     public TweetAdapter(List<Tweet> tweets) {
@@ -25,7 +31,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View tweetView = inflater.inflate(R.layout.item_tweet, parent, false);
@@ -33,8 +39,27 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         return viewHolder;
     }
 
-
     // bind the values based on the position of the element
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // get the data according to position
+        Tweet tweet = mTweets.get(position);
+
+        // populate the views according to this data
+        holder.tvUsername.setText(tweet.user.name);
+        holder.tvBody.setText(tweet.body);
+
+        Glide.with(context)
+                .load(tweet.user.profileImageUrl)
+                .apply(RequestOptions.bitmapTransform(new RoundedCornersTransformation(70, 0)))
+                .into(holder.ivProfileImage);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mTweets.size();
+    }
 
     // create ViewHolder class
 
@@ -49,7 +74,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             // perform findViewByItem lookups
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvUsername = itemView.findViewById(R.id.tvUserName);
-            tvBody = itemView.findViewById(R.id.tvBody);r
+            tvBody = itemView.findViewById(R.id.tvBody);
         }
     }
 }
