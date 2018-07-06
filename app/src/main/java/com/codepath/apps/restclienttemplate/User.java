@@ -2,7 +2,9 @@ package com.codepath.apps.restclienttemplate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class User {
 
     // list the attributes
@@ -23,4 +25,6 @@ public class User {
 
         return user;
     }
+
+    public User() {}
 }

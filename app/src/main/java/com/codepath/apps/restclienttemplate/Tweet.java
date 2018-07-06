@@ -2,8 +2,10 @@ package com.codepath.apps.restclienttemplate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
-public class Tweet {
+@Parcel
+public class Tweet{
 
     // list out the attributes
     public String body;
@@ -22,5 +24,39 @@ public class Tweet {
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
 
         return tweet;
+    }
+
+    public Tweet() {}
+
+    public String getBody() {
+        return body;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }
