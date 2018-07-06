@@ -6,7 +6,8 @@
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="15dp">
+    android:layout_marginTop="15dp"
+    android:onClick="onReplyAction">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -33,11 +34,11 @@
         android:layout_below="@+id/tvUserName"
         android:layout_marginLeft="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="Tweet"
         android:autoLink="all"
         android:linksClickable="true"
-        android:textColorLink="#ff1da1f2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+        android:text="Tweet"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textColorLink="#ff1da1f2" />
 
     <TextView
         android:id="@+id/tvScreenName"
@@ -53,37 +54,39 @@
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="3dp"
-        android:layout_toEndOf="@+id/tvScreenName"
         android:text="Time"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvReply"
+        android:layout_width="100dp"
         android:layout_height="36dp"
         android:layout_below="@+id/tvBody"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:background="@android:color/transparent"
-        android:onClick="onReplyAction"
+        android:paddingLeft="30dp"
+        android:paddingTop="8dp"
         android:text="Reply"
-        android:textColor="#5f5f5f" />
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#6c6c6c" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button"
+        android:layout_alignBottom="@+id/tvReply"
         android:layout_marginLeft="30dp"
-        android:layout_toEndOf="@+id/button"
+        android:layout_toEndOf="@+id/tvReply"
         app:srcCompat="@drawable/retweet_stroke" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button"
+        android:layout_alignBottom="@+id/tvReply"
         android:layout_marginLeft="60dp"
         android:layout_toEndOf="@+id/imageView2"
         app:srcCompat="@drawable/heart_stroke" />

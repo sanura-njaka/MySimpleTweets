@@ -122,7 +122,7 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     public void onReplyAction(View view) {
-        TextView tvScreenName = findViewById(R.id.tvScreenName);
+        TextView tvScreenName = view.findViewById(R.id.tvScreenName);
         String screenName = tvScreenName.getText().toString();
 
         Intent intent = new Intent(this, ComposeActivity.class);

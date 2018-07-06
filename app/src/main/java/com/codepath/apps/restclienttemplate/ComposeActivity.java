@@ -57,7 +57,6 @@ public class ComposeActivity extends AppCompatActivity {
 
             EditText etTweet = findViewById(R.id.etCompose);
             etTweet.setText(replyTo + " \n");
-            etTweet.setCursorVisible(false);
         }
     }
 
