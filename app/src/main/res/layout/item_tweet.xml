@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@android:color/black" />
@@ -19,7 +19,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="Username" />
+        android:text="Username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -28,5 +29,6 @@
         android:layout_below="@+id/tvUserName"
         android:layout_marginLeft="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="Tweet" />
+        android:text="Tweet"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 </RelativeLayout>

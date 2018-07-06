@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/miCompose"
-        android:icon="@drawable/compose_icon"
+        android:icon="@drawable/compose_icon_official"
         android:onClick="onComposeAction"
         app:showAsAction="always" />
 </menu>
