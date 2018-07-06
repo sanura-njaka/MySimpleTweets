@@ -23,6 +23,8 @@ public class ComposeActivity extends AppCompatActivity {
 
     private TwitterClient client;
     Tweet tweet;
+    boolean isReply;
+    String replyTo;
     private TextView mTextView;
     private EditText mEditText;
     private final TextWatcher mTextEditorWatcher = new TextWatcher() {
@@ -47,6 +49,16 @@ public class ComposeActivity extends AppCompatActivity {
 
         mEditText = findViewById(R.id.etCompose);
         mEditText.addTextChangedListener(mTextEditorWatcher);
+
+        isReply = getIntent().getBooleanExtra("isReply", false);
+
+        if (isReply) {
+            replyTo = getIntent().getStringExtra("replyTo");
+
+            EditText etTweet = findViewById(R.id.etCompose);
+            etTweet.setText(replyTo + " \n");
+            etTweet.setCursorVisible(false);
+        }
     }
 
     public void sendTweet(View view) {
