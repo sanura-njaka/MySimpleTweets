@@ -19,6 +19,7 @@ import cz.msebera.android.httpclient.Header;
 public class ComposeActivity extends AppCompatActivity {
 
     private TwitterClient client;
+    Tweet tweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +33,18 @@ public class ComposeActivity extends AppCompatActivity {
         String newTweet = etTweet.getText().toString();
         etTweet.setText("");
 
-        final Tweet[] tweet = new Tweet[1];
-
         client.sendTweet(newTweet, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //Log.d("TwitterClient", response.toString());
 
                 try {
-                    tweet[0] = Tweet.fromJSON(response);
+                    tweet = Tweet.fromJSON(response);
+                    Intent intent = new Intent();
+                    intent.putExtra("tweet", Parcels.wrap(tweet));
+
+                    setResult(RESULT_OK, intent);
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -65,11 +69,5 @@ public class ComposeActivity extends AppCompatActivity {
                 throwable.printStackTrace();
             }
         });
-
-        Intent intent = new Intent(this, TimelineActivity.class);
-        intent.putExtra("tweet", Parcels.wrap(tweet[0]));
-
-        setResult(RESULT_OK, intent);
-        finish();
     }
 }
