@@ -115,7 +115,6 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the menu; this adds items to the action bar if it is present
@@ -186,6 +185,12 @@ public class TimelineActivity extends AppCompatActivity {
                 throwable.printStackTrace();
             }
         });
+    }
+
+    public void openTweetDetails(Tweet tweet) {
+        Intent i = new Intent(this, TweetDetailsActivity.class);
+        i.putExtra("tweet", Parcels.wrap(tweet));
+        startActivity(i);
     }
 
     @Override

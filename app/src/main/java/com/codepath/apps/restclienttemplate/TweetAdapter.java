@@ -28,6 +28,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     Context context;
     private final ClickListener listener;
     private static Activity activity;
+    private static String profileImageUrl;
 
     // pass in the Tweets array in the constructor
     public TweetAdapter(List<Tweet> tweets, ClickListener listener, Activity activity) {
@@ -62,8 +63,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         holder.tvBody.setText(tweet.body);
         holder.tvTime.setText(tweet.formattedTime);
 
+        this.profileImageUrl = tweet.user.profileImageUrl;
+
         Glide.with(context)
-                .load(tweet.user.profileImageUrl)
+                .load(profileImageUrl)
                 .apply(RequestOptions.bitmapTransform(new RoundedCornersTransformation(100, 0)))
                 .into(holder.ivProfileImage);
     }
@@ -87,7 +90,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     // create ViewHolder class
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private WeakReference<ClickListener> listenerRef;
 
         public ImageView ivProfileImage;
@@ -121,7 +124,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
             if (v.getId() == btReply.getId()) {
                 String screenName = tvScreenName.getText().toString();
 
@@ -131,7 +134,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 //itemView.getContext().startActivity(intent);
                 activity.startActivityForResult(intent, 17);
             } else {
-                //Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                TimelineActivity activity = (TimelineActivity) itemView.getContext();
+                activity.openTweetDetails(mTweets.get(getAdapterPosition()));
             }
 
             listenerRef.get().onPositionClicked(getAdapterPosition());
