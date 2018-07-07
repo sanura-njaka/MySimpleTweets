@@ -124,7 +124,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
             if (v.getId() == btReply.getId()) {
                 String screenName = tvScreenName.getText().toString();
 
