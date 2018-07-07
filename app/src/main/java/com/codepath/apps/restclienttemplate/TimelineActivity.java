@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -45,7 +43,17 @@ public class TimelineActivity extends AppCompatActivity {
         // init the arraylist (data source)
         tweets = new ArrayList<>();
         // construct the adapter from this data source
-        tweetAdapter = new TweetAdapter(tweets);
+        tweetAdapter = new TweetAdapter(tweets, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                // callback performed on click
+            }
+
+            @Override
+            public void onLongClicked(int position) {
+                // callback performed on click
+            }
+        }, TimelineActivity.this);
         // RecyclerView setup (layout manager, use adapter)
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter
@@ -121,15 +129,16 @@ public class TimelineActivity extends AppCompatActivity {
         startActivityForResult(intent, 17);
     }
 
-    public void onReplyAction(View view) {
-        TextView tvScreenName = view.findViewById(R.id.tvScreenName);
-        String screenName = tvScreenName.getText().toString();
-
-        Intent intent = new Intent(this, ComposeActivity.class);
-        intent.putExtra("isReply", true);
-        intent.putExtra("replyTo", screenName);
-        startActivityForResult(intent, 17);
-    }
+//    public static void onReplyAction(View view) {
+//        TextView tvScreenName = view.findViewById(R.id.tvScreenName);
+//        String screenName = tvScreenName.getText().toString();
+//
+//        Intent intent = new Intent(view.getContext(), ComposeActivity.class);
+//        intent.putExtra("isReply", true);
+//        intent.putExtra("replyTo", screenName);
+//        view.getContext().startActivity(intent);
+//        //startActivityForResult(intent, 17);
+//    }
 
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
