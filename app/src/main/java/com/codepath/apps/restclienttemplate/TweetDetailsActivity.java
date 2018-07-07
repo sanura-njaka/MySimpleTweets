@@ -39,7 +39,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvUsername.setText(tweet.user.name);
         tvScreenName.setText("@" + tweet.user.screenName);
         tvBody.setText(tweet.body);
-        tvTime.setText(tweet.formattedTime);
+        tvTime.setText(tweet.absoluteTime);
 
         Glide.with(this)
                 .load(profileImageUrl)

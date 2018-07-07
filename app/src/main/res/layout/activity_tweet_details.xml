@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="7dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:text="Username"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title" />
@@ -43,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="27dp"
         android:layout_below="@+id/tvUserName"
+        android:layout_marginLeft="7dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:text="Screen Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />

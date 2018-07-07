@@ -13,6 +13,7 @@ public class Tweet{
     public User user;
     public String createdAt;
     public String formattedTime;
+    public String absoluteTime;
 
     // deserialize the JSON
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
@@ -24,6 +25,7 @@ public class Tweet{
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
         tweet.formattedTime = TimeFormatter.getTimeDifference(tweet.createdAt);
+        tweet.absoluteTime = TimeFormatter.getTimeStamp(tweet.createdAt);
 
         return tweet;
     }
